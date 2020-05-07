@@ -2,6 +2,8 @@ package creatorhelper;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import adminstaff.*;
 import medicalstaff.*;
 import animals.*;
 import staff.*;
@@ -10,7 +12,8 @@ public class CreatorHelper {
 	
 	ArrayList<Animal> myAnimals = new ArrayList<Animal>();
 	ArrayList<MedicalStaff> myMedicalStaff = new ArrayList<MedicalStaff>();
-
+	ArrayList<AdminStaff> myAdminStaff = new ArrayList<AdminStaff>();
+	StaffNumber staffNumber = new StaffNumber();
 
 
 	public CreatorHelper() {
@@ -23,65 +26,82 @@ public class CreatorHelper {
 		int numberDogs = numberAnimals - rd.nextInt(numberAnimals);
 		int numberCats = numberAnimals - numberDogs - rd.nextInt(numberAnimals - numberDogs);
 		int numberRabbits = numberAnimals - numberDogs - numberCats;
-
-		System.out.println("Number of Dogs: " + numberDogs);
-		System.out.println("Number of Cats: " + numberCats);
-		System.out.println("Number of Rabits: " + numberRabbits);
-
-
-		//Pet names:
-		String[] petNames = {"Gigi", "Nibby", "Meggie", "Lacey", "Nana", "Wrigley", "Joy", "Shadow", "Wizard", "Apollo", "Chevy", "Muffin", "BJ", "Nikki", "Munchkin", "sabelle", "Tinker", "Moose", "Clifford", "Porky", "Pooch", "Lexi", "Dylan", "Norton", "Misha", "Barker", "Harley", "Cobweb", "Cyrus", "Michael", "Happyt", "Furball", "Nemo", "Pepe", "Nibbles", "Billie", "Laddie", "Simon", "Erin", "Tinkerbell", "Hudson", "Chance", "Athena", "Skeeter", "Silvester", "Kelly", "Elliot", "Ebony", "Waldo", "Violet", "Romeo", "June", "Daffy", "Charlie", "Kid", "Joe", "Bits", "Pinta", "Kallie", "Macintosh", "Roxanne", "Stinky", "Napoleon", "Gasby", "Monkey", "Pooh Bear", "Hercules", "Kismet", "Yaka", "Pixie", "Rexy", "Poochie", "Lexie", "Birdie", "Woofie", "Barley", "Westie", "Queenie", "Ozzy", "Tally", "Tiny", "Sage", "Maddy", "Maggie-mae", "Holly", "Schotzie", "Bonnie", "Josie", "Miasy", "Midnight", "Bacchus", "Louis", "Rover", "Kelsey", "Goldie", "Peppy", "Aldo", "Brit", "Cosmo", "Freckles"};
-		String[] medicalCondition = {"Ear Mites", "Epilepsy", "Heartworm", "Arthritis", "Blindness", "Blood in Urine", "Deafness", "Eating Stool", "Fever", "Leg - Swollen", "Poisoning", "Vomiting"};
 		
-		//Create random number of animals
+		// Generates animals based on the numbers above
 		for (int i = 0; i < numberAnimals; i++) {
 			if (i < numberCats) {
-				Cat newCat = new Cat(petName(), animalAge(), medicalCondition[rd.nextInt(medicalCondition.length)]);
+				Cat newCat = new Cat(petName(), animalAge(), medicalCondition());
 				myAnimals.add(newCat);
 			}
 			if (i < numberDogs) {
-				Dog newDog = new Dog(petName(), animalAge(), medicalCondition[rd.nextInt(medicalCondition.length)]);
+				Dog newDog = new Dog(petName(), animalAge(), medicalCondition());
 				myAnimals.add(newDog);
 			}
 			if (i < numberRabbits) {
-				Rabbit newRabbit = new Rabbit(petName(), animalAge(), medicalCondition[rd.nextInt(medicalCondition.length)]);
+				Rabbit newRabbit = new Rabbit(petName(), animalAge(), medicalCondition());
 				myAnimals.add(newRabbit);
 			}
 		}
 		
-		System.out.println(myAnimals);
+		//System.out.println(myAnimals);
 		//System.out.println(myAnimals.get(1).age);
 		//System.out.println(myAnimals.size());
 		//System.out.println(myAnimals.get(1).specie);
 		
 		
-		StaffNumber staffNumber = new StaffNumber();
 		
-		
+		// Generate random numbers for MedicalStaff.
 		int numberMedicalStaff = 30;
 		int numberVet = 5;
 		int numberNurse = numberMedicalStaff - numberVet - rd.nextInt(numberMedicalStaff - numberVet);
 		int numberTrainee = numberMedicalStaff - numberVet - numberNurse;
 
+		// Generates MedicalStaff based on the numbers above
 		for (int i = 0; i < numberMedicalStaff; i++) {
 			if (i < numberVet) {
-				Vet newVet = new Vet(humanName(), staffNumber.getStaffNumber(), 0 );
+				Vet newVet = new Vet(humanName(), staffNumber.getStaffNumber(), 10 );
 			    myMedicalStaff.add(newVet);
 			}
 			if (i < numberNurse) {
-				Nurse newNurse = new Nurse(humanName(), staffNumber.getStaffNumber(), 0 );
+				Nurse newNurse = new Nurse(humanName(), staffNumber.getStaffNumber(), 5 );
 			    myMedicalStaff.add(newNurse);
 			}
 			if (i < numberTrainee) {
-				Trainee newTrainee = new Trainee(humanName(), staffNumber.getStaffNumber(), 0 );
+				Trainee newTrainee = new Trainee(humanName(), staffNumber.getStaffNumber(), 2 );
 			    myMedicalStaff.add(newTrainee);
 			}
 		}
-		System.out.println(myMedicalStaff);
-		System.out.println(myMedicalStaff.get(0));
-		System.out.println(myMedicalStaff.get(0).getType());
-//		
+		
+		//System.out.println(myMedicalStaff);
+		//System.out.println(myMedicalStaff.get(0));
+		//System.out.println(myMedicalStaff.get(0).getType());
 	
+		
+		// Generate random numbers for AdminStaff.
+		int numberAdminStaff = 10;
+		int numberReceptionist = 5;
+		int numberIT = 5;
+
+		// Generates AdminStaff based on the numbers above
+		for (int i = 0; i < numberAdminStaff; i++) {
+			if (i < numberReceptionist) {
+				Receptionist newReceptionist = new Receptionist(humanName(), staffNumber.getStaffNumber(), 10 );
+				myAdminStaff.add(newReceptionist);
+			}
+			if (i < numberIT) {
+				IT newIT = new IT(humanName(), staffNumber.getStaffNumber(), 10 );
+				myAdminStaff.add(newIT);
+			}
+
+		}
+		
+		//System.out.println(myAdminStaff);
+		//System.out.println(myMedicalStaff.get(0));
+		//System.out.println(myMedicalStaff.get(0).getType());
+		
+		
+		
+		
 	}
 	
 	// Generates a random age for the pets and make sure it is not zero
@@ -106,14 +126,23 @@ public class CreatorHelper {
 		return petName;
 	}
 	
+	// Generates a random name for people
 	public String humanName() {
 		Random rd = new Random();
 		String name;
-		String[] firstNames = {"Guilherme", "João", "Paula", "Teste"};
-		String[] secongNames = {"Strey", "Nascimento", "Muterle", "Pinto"};
+		String[] firstNames = {"Guilherme", "Marnie", "Diogo", "Wilbur", "Keri", "Nikki", "Jonny", "Tomas", "Aoife", "Katerina", "Nancy", "Eryk", "Amy", "Alissa", "Micheal"};
+		String[] secongNames = {"Strey", "Nascimento", "Muterle", "Watt", "Rose", "Gordon", "Burris", "Thompson", "Larsen", "McCartney", "Boyle"};
 		name = firstNames[rd.nextInt(firstNames.length)] + " " + secongNames[rd.nextInt(secongNames.length)];
 		return name;
 	}
-
+	
+	//Generates a random medical condition
+	public String medicalCondition() {
+		Random rd = new Random();
+		String condition;
+		String[] medicalCondition = {"Ear Mites", "Epilepsy", "Heartworm", "Arthritis", "Blindness", "Blood in Urine", "Deafness", "Eating Stool", "Fever", "Leg - Swollen", "Poisoning", "Vomiting"};
+		condition = medicalCondition[rd.nextInt(medicalCondition.length)];
+		return condition;
+	}
 
 }
