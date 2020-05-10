@@ -47,7 +47,7 @@ public abstract class Animal {
 	}
 	
 	public String toString(){  
-		  return name + " " + age + " " + medicalCondition + " " + specie ;  
+		  return ("Type of Animal: " + specie + "\nName of Animal: " + name + "\nAge: " + age + "\nMedical Condition: " + medicalCondition);  
 	}  
 	
 }

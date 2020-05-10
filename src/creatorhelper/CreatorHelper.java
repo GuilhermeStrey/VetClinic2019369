@@ -10,13 +10,14 @@ import staff.*;
 
 public class CreatorHelper {
 	
-	ArrayList<Animal> myAnimals = new ArrayList<Animal>();
-	ArrayList<MedicalStaff> myMedicalStaff = new ArrayList<MedicalStaff>();
-	ArrayList<AdminStaff> myAdminStaff = new ArrayList<AdminStaff>();
+	public static ArrayList<Animal> myAnimals = new ArrayList<Animal>();
+	public static ArrayList<Staff> myStaff = new ArrayList<Staff>();
+	public static ArrayList<MedicalStaff> myMedicalStaff = new ArrayList<MedicalStaff>();
+	public static ArrayList<AdminStaff> myAdminStaff = new ArrayList<AdminStaff>();
 	StaffNumber staffNumber = new StaffNumber();
 
 
-	public CreatorHelper() {
+	public void generate() {
 		
 		// Declaring random function
 		Random rd = new Random();
@@ -44,10 +45,9 @@ public class CreatorHelper {
 		}
 		
 		//System.out.println(myAnimals);
-		//System.out.println(myAnimals.get(1).age);
+		//System.out.println(myAnimals.get(1));
 		//System.out.println(myAnimals.size());
-		//System.out.println(myAnimals.get(1).specie);
-		
+		//System.out.println(myAnimals.get(1).specie);	
 		
 		
 		// Generate random numbers for MedicalStaff.
@@ -61,23 +61,26 @@ public class CreatorHelper {
 			if (i < numberVet) {
 				Vet newVet = new Vet(humanName(), staffNumber.getStaffNumber(), 10 );
 			    myMedicalStaff.add(newVet);
+			    myStaff.add(newVet);
 			}
 			if (i < numberNurse) {
 				Nurse newNurse = new Nurse(humanName(), staffNumber.getStaffNumber(), 5 );
 			    myMedicalStaff.add(newNurse);
+			    myStaff.add(newNurse);
+
 			}
 			if (i < numberTrainee) {
 				Trainee newTrainee = new Trainee(humanName(), staffNumber.getStaffNumber(), 2 );
 			    myMedicalStaff.add(newTrainee);
+			    myStaff.add(newTrainee);
+
 			}
 		}
-		
 		//System.out.println(myMedicalStaff);
 		//System.out.println(myMedicalStaff.get(0));
 		//System.out.println(myMedicalStaff.get(0).getType());
-	
 		
-		// Generate random numbers for AdminStaff.
+		
 		int numberAdminStaff = 10;
 		int numberReceptionist = 5;
 		int numberIT = 5;
@@ -87,26 +90,32 @@ public class CreatorHelper {
 			if (i < numberReceptionist) {
 				Receptionist newReceptionist = new Receptionist(humanName(), staffNumber.getStaffNumber(), 10 );
 				myAdminStaff.add(newReceptionist);
+			    myStaff.add(newReceptionist);
+
 			}
 			if (i < numberIT) {
 				IT newIT = new IT(humanName(), staffNumber.getStaffNumber(), 10 );
 				myAdminStaff.add(newIT);
+			    myStaff.add(newIT);
 			}
-
 		}
 		
 		//System.out.println(myAdminStaff);
 		//System.out.println(myMedicalStaff.get(0));
-		//System.out.println(myMedicalStaff.get(0).getType());
+		//System.out.println(myMedicalStaff.get(0).getType());	
 		
+		//System.out.println(myStaff);
+		//System.out.println(myStaff.size());
 		
-		
+       // printStaff();
+
+
 		
 	}
 	
 	// Generates a random age for the pets and make sure it is not zero
 	// Max age is 14 years
-	public int animalAge() {
+	private int animalAge() {
 		int age;
 		Random rd = new Random();
 		age = rd.nextInt(16);
@@ -118,7 +127,7 @@ public class CreatorHelper {
 		return age;
 	}
 	// Generates a random name for the pets
-	public String petName() {
+	private String petName() {
 		Random rd = new Random();
 		String petName;
 		String[] petNames = {"Gigi", "Nibby", "Meggie", "Lacey", "Nana", "Wrigley", "Joy", "Shadow", "Wizard", "Apollo", "Chevy", "Muffin", "BJ", "Nikki", "Munchkin", "sabelle", "Tinker", "Moose", "Clifford", "Porky", "Pooch", "Lexi", "Dylan", "Norton", "Misha", "Barker", "Harley", "Cobweb", "Cyrus", "Michael", "Happyt", "Furball", "Nemo", "Pepe", "Nibbles", "Billie", "Laddie", "Simon", "Erin", "Tinkerbell", "Hudson", "Chance", "Athena", "Skeeter", "Silvester", "Kelly", "Elliot", "Ebony", "Waldo", "Violet", "Romeo", "June", "Daffy", "Charlie", "Kid", "Joe", "Bits", "Pinta", "Kallie", "Macintosh", "Roxanne", "Stinky", "Napoleon", "Gasby", "Monkey", "Pooh Bear", "Hercules", "Kismet", "Yaka", "Pixie", "Rexy", "Poochie", "Lexie", "Birdie", "Woofie", "Barley", "Westie", "Queenie", "Ozzy", "Tally", "Tiny", "Sage", "Maddy", "Maggie-mae", "Holly", "Schotzie", "Bonnie", "Josie", "Miasy", "Midnight", "Bacchus", "Louis", "Rover", "Kelsey", "Goldie", "Peppy", "Aldo", "Brit", "Cosmo", "Freckles"};
@@ -127,7 +136,7 @@ public class CreatorHelper {
 	}
 	
 	// Generates a random name for people
-	public String humanName() {
+	private String humanName() {
 		Random rd = new Random();
 		String name;
 		String[] firstNames = {"Guilherme", "Marnie", "Diogo", "Wilbur", "Keri", "Nikki", "Jonny", "Tomas", "Aoife", "Katerina", "Nancy", "Eryk", "Amy", "Alissa", "Micheal"};
@@ -137,12 +146,14 @@ public class CreatorHelper {
 	}
 	
 	//Generates a random medical condition
-	public String medicalCondition() {
+	private String medicalCondition() {
 		Random rd = new Random();
 		String condition;
 		String[] medicalCondition = {"Ear Mites", "Epilepsy", "Heartworm", "Arthritis", "Blindness", "Blood in Urine", "Deafness", "Eating Stool", "Fever", "Leg - Swollen", "Poisoning", "Vomiting"};
 		condition = medicalCondition[rd.nextInt(medicalCondition.length)];
 		return condition;
 	}
+
+
 
 }

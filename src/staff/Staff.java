@@ -38,6 +38,6 @@ public abstract class Staff {
 		this.salary = salary;
 	}
 	public String toString(){  
-		  return name + " " + staffNumber + " " + salary + " " + type;  
+		  return ("Staff Number: " + staffNumber + "\nName: " + name + "\nRole: " + type + "\nSalary: " + salary);  
 	}  
 }

@@ -1,15 +1,18 @@
-import creatorhelper.CreatorHelper;
+
+import creatorhelper.*;
 
 public class VetClinic2019369 {
 
 	public VetClinic2019369() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
-		new CreatorHelper();
+		new creatorhelper.CreatorHelper().generate();
+
+		new CLI().cli();;
+
+		
 	}
 
 
