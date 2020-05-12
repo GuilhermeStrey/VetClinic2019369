@@ -1,6 +1,4 @@
 
-import creatorhelper.*;
-
 public class VetClinic2019369 {
 
 	public VetClinic2019369() {

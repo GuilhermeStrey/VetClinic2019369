@@ -4,14 +4,13 @@ public abstract class Staff {
 	
 	String name;
 	int staffNumber;
-	double salary;
+	String salary;
 	protected String type;
 		
-	public Staff(String name, int staffNumber, double salary) {
+	public Staff(String name, int staffNumber, String salary) {
 		this.name = name;
 		this.staffNumber = staffNumber;
 		this.salary = salary;
-		this.type = type;
 	}
 	public String getType() {
 		return type;
@@ -31,10 +30,10 @@ public abstract class Staff {
 	public void setStaffNumber(int staffNumber) {
 		this.staffNumber = staffNumber;
 	}
-	public double getSalary() {
+	public String getSalary() {
 		return salary;
 	}
-	public void setSalary(double salary) {
+	public void setSalary(String salary) {
 		this.salary = salary;
 	}
 	public String toString(){  
