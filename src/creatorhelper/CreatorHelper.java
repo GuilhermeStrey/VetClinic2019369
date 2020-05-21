@@ -10,18 +10,23 @@ import staff.*;
 
 public class CreatorHelper {
 	
+	// Declaring and instantiating ArrayLists to store informations
 	public static ArrayList<Animal> myAnimals = new ArrayList<Animal>();
 	public static ArrayList<Staff> myStaff = new ArrayList<Staff>();
 	public static ArrayList<MedicalStaff> myMedicalStaff = new ArrayList<MedicalStaff>();
 	public static ArrayList<AdminStaff> myAdminStaff = new ArrayList<AdminStaff>();
+	
+	// Declaring and instantiating staffNumber
 	StaffNumber staffNumber = new StaffNumber();
+	
+	// Declaring and instantiating random function
 	Random rd = new Random();
 
-
+	// Generates all the Staff and Animals
 	public void generate() {
 
-		// Generate random numbers of each species.
-		int numberAnimals = 100;
+		// Generate random numbers for each species
+		int numberAnimals = 1000;
 		int numberDogs = numberAnimals - rd.nextInt(numberAnimals);
 		int numberCats = numberAnimals - numberDogs - rd.nextInt(numberAnimals - numberDogs);
 		int numberRabbits = numberAnimals - numberDogs - numberCats;
@@ -65,14 +70,13 @@ public class CreatorHelper {
 				Trainee newTrainee = new Trainee(humanName(), staffNumber.getStaffNumber(), salaryGenerator() );
 			    myMedicalStaff.add(newTrainee);
 			    myStaff.add(newTrainee);
-
 			}
 		}
 		
-		
+		// Generate random numbers for AdminStaff.
 		int numberAdminStaff = 10;
-		int numberReceptionist = 5;
-		int numberIT = 5;
+		int numberReceptionist = numberAdminStaff - rd.nextInt(numberAdminStaff);
+		int numberIT = numberAdminStaff - numberReceptionist;
 
 		// Generates AdminStaff based on the numbers above
 		for (int i = 0; i < numberAdminStaff; i++) {
@@ -91,14 +95,14 @@ public class CreatorHelper {
 
 	}
 	
-	// Generates a random age for the pets and make sure it is not zero
-	// Max age is 14 years
+	// Generates a random age for the pets making sure it is not zero
+	// Max age is 16 years
 	private int animalAge() {
 		int age;
 		age = rd.nextInt(16);
 			if (age == 0) {
 				do {
-					age = rd.nextInt(14);
+					age = rd.nextInt(16);
 				} while (age == 0);
 			}
 		return age;
@@ -112,16 +116,17 @@ public class CreatorHelper {
 		return petName;
 	}
 	
+
 	// Generates a random name for people
 	private String humanName() {
 		String name;
-		String[] firstNames = {"Guilherme", "Marnie", "Diogo", "Wilbur", "Keri", "Nikki", "Jonny", "Tomas", "Aoife", "Katerina", "Nancy", "Eryk", "Amy", "Alissa", "Micheal"};
-		String[] secongNames = {"Strey", "Nascimento", "Muterle", "Watt", "Rose", "Gordon", "Burris", "Thompson", "Larsen", "McCartney", "Boyle"};
+		String[] firstNames = {	"Nannie", "Lizzie", "Wilburn", "Stacey", "Colton", "Theron", "Marilyn", "Eugene", "Etta", "Tamika", "Lula", "Rocco", "Fredrick", "Louisa", "Jerrold", "Javier", "Shawn", "Deborah", "Devon", "Lindsey", "Misty", "Ron", "Jefferey", "Mia", "Ethel", "Oscar", "Kevin", "Fannie", "Corinne", "Ronald", "Sebastian", "Gene", "Matthew", "Lenora", "Marla", "Estela", "Sidney", "Tracey", "Deena", "Adolph", "Eugenia", "Marcy", "Deanne", "Patrice", "Waylon", "Diego", "Barton", "Felecia", "Arlene", "Norman"};
+		String[] secongNames = {"Burton", "Sims", "Lambert", "Lynn", "Barton", "Garrett", "Wilkerson", "Nunez", "Wilson", "Morgan", "Mccarthy", "Grant", "Everett", "Carney" ,"West", "Barber", "Spence", "Stevenson", "Gilmore", "Cisneros", "Grimes", "Dawson", "Strey", "Stanton", "Reynolds", "Bush", "Mosley", "Faulkner", "Andersen", "Travis", "Rhodes", "Wiley", "Wright", "Kidd", "Wagner", "Barajas", "Boyer", "Li", "Odom", "Norris", "Montgomery", "Hawkins", "Navarro", "Bond", "Hayden", "Puhl", "Mclaughlin", "Hughes", "Yoder"};
 		name = firstNames[rd.nextInt(firstNames.length)] + " " + secongNames[rd.nextInt(secongNames.length)];
 		return name;
 	}
 	
-	//Generates a random medical condition
+	// Generates a random medical condition
 	private String medicalCondition() {
 		String condition;
 		String[] medicalCondition = {"Ear Mites", "Epilepsy", "Heartworm", "Arthritis", "Blindness", "Blood in Urine", "Deafness", "Eating Stool", "Fever", "Leg - Swollen", "Poisoning", "Vomiting"};
@@ -129,21 +134,20 @@ public class CreatorHelper {
 		return condition;
 	}
 	
-	//Generates a random task
+	// Generates a random task
 	private String taskGenerator() {
 		String task;
-		String[] tasks = {"Making Phone Calls", "On Holidays", "On Lunch"};
+		String[] tasks = {"Working", "On Holidays", "On Break", "Day Off"};
 		task = tasks[rd.nextInt(tasks.length)];
 		return task;
-	
 	}
 	
+	// Generates a random salary
 	private String salaryGenerator() {
 		String salary;
 		String[] salaries = {"Level 1", "Level 2", "Level 3", "Level 4", "Level 5"};
 		salary = salaries[rd.nextInt(salaries.length)];
-		return salary;	
-		
+		return salary;		
 	}
-
+	
 }
